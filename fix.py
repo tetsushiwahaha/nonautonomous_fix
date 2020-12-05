@@ -29,7 +29,9 @@ def func(t, x, data):
 	dim = data.dim
 	dphidx = x[dim:dim*dim+dim].reshape(dim, dim).transpose()
 	dfdx = [[0, 1], [p, -k]]
-	return np.append(f, (dfdx @ dphidx).transpose().flatten())
+	# return np.append(f, (dfdx @ dphidx).transpose().flatten())
+	f.extend((dfdx @ dphidx).transpose().flatten())
+	return  f
 
 def fixed(data):
 	fperiod = 2*np.pi
